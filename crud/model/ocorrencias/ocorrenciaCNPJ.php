@@ -50,8 +50,8 @@ include(HEADER_TEMPLATE);
                 <tr>
                     <td><?php echo $ocorrencia[0]; ?></td>
                     <td><?php echo $ocorrencia[1]; ?></td>
+                    <td><?php echo $ocorrencia[2]; ?></td>
                     <td><?php echo $ocorrencia[3]; ?></td>
-                    <td><?php echo $ocorrencia[4]; ?></td>
                     <td class="actions text-right">
                         <a href="view.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
                         <a href="edit.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>

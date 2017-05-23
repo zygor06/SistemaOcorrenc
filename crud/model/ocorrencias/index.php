@@ -32,20 +32,20 @@ include(HEADER_TEMPLATE);
 <table class="table table-hover">
     <thead>
     <tr>
-        <th>Número da Ocorrência</th>
-        <th>Ano</th>
-        <th>Data Registro</th>
-        <th>Descricao</th>
+        <th colspan="2">Número da Ocorrência</th>
+        <th colspan="2">Ano</th>
+        <th colspan="2">Data Registro</th>
+        <th colspan="6">Descricao</th>
     </tr>
     </thead>
     <tbody>
     <?php if ($ocorrencias) : ?>
         <?php foreach ($ocorrencias as $ocorrencia) : ?>
             <tr>
-                <td><?php echo $ocorrencia[0]; ?></td>
-                <td><?php echo $ocorrencia[1]; ?></td>
-                <td><?php echo $ocorrencia[3]; ?></td>
-                <td><?php echo $ocorrencia[8]; ?></td>
+                <td colspan="2"><?php echo $ocorrencia[0]; ?></td>
+                <td colspan="2"><?php echo $ocorrencia[1]; ?></td>
+                <td colspan="2"><?php echo $ocorrencia[3]; ?></td>
+                <td colspan="6"><?php echo $ocorrencia[8]; ?></td>
                 <td class="actions text-right">
                     <a href="view.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
                     <a href="edit.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
