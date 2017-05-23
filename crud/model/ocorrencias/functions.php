@@ -38,6 +38,12 @@ function loadView($view){
     $ocorrencias = executeSql($sql);
 }
 
+
+function view($id = null) {
+    global $ocorrencia;
+    $ocorrencia = find('ocorrencia_policial', $id, 'numero');
+}
+
 /**
  * @param array $post_data -> nome do array passado via post
  *
