@@ -1,18 +1,19 @@
 <?php
-
-require_once('model/functions.php');
+require_once('model/ocorrencias/functions.php');
 index();
 
 
 
-include('inc/header.php'); ?>
+include(HEADER_TEMPLATE); ?>
+
+    <script>console.log(<?php echo $ocorrencias[0]['id'] ?>)</script>
     <header>
         <div class="row">
             <div class="col-sm-6">
-                <h2>Ocorrências</h2>
+                <h2>Marcas de Veículos</h2>
             </div>
             <div class="col-sm-6 text-right h2">
-                <a class="btn btn-primary" href="<?=CAMINHO_ABSOLUTO?>model/ocorrencias/add.php"><i class="fa fa-plus"></i> Nova Ocorrência</a>
+                <a class="btn btn-primary" href="add.php"><i class="fa fa-plus"></i> Nova Marca</a>
                 <a class="btn btn-default" href="index.php"><i class="fa fa-refresh"></i> Atualizar</a>
             </div>
         </div>
@@ -58,4 +59,4 @@ include('inc/header.php'); ?>
         </tbody>
     </table>
 
-<?php include('inc/footer.php'); ?>
+<?php include(FOOTER_TEMPLATE); ?>

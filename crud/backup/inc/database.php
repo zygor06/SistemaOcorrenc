@@ -1,16 +1,10 @@
 <?php
 
-/**
- * User: Carlos Said <cbandeira@gmail.com>
- * Date: 19/05/2017
- * Time: 17:49
- */
-
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 /**
  * @return mysqli|null
- * Created By: Carlos Said
+ * Created By: Hygor
  */
 function open_database() {
     try {
@@ -26,7 +20,7 @@ function open_database() {
 
 /**
  * @param $conn
- * Created By: Carlos Said
+ * Created By: Hygor
  */
 function close_database($conn) {
     try {
@@ -42,7 +36,7 @@ function close_database($conn) {
  * @param null $column_id   //Nome da coluna
  *
  * @return array|null
- * Created By: Carlos Said
+ * Created By: Hygor
  */
 function find($table = NULL, $id = null, $column_id = 'id') {
 
@@ -78,54 +72,11 @@ function find($table = NULL, $id = null, $column_id = 'id') {
     return $found;
 }
 
-
-/**
- *
- *@param null $table -> Nome da tabela
- *@param null $data -> Array de dados passados via POST
- * 
- * Created By: Carlos Said
- */
-function save($table = null, $data = null) {
-
-  $database = open_database();
-
-  $columns = null;
-  $values = null;
-
-  //print_r($data);
-
-  foreach ($data as $key => $value) {
-    $columns .= trim($key, "'") . ",";
-    $values .= "'$value',";
-  }
-
-  // remove a ultima virgula
-  $columns = rtrim($columns, ',');
-  $values = rtrim($values, ',');
-  
-  $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
-
-  try {
-    $database->query($sql);
-
-    $_SESSION['message'] = 'Registro cadastrado com sucesso.';
-    $_SESSION['type'] = 'success';
-  
-  } catch (Exception $e) { 
-  
-    $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
-    $_SESSION['type'] = 'danger';
-  } 
-
-  close_database($database);
-}
-
 /**
  * @param $table        //Nome da tabela
  *
  * @return array|null
- * Created By: Carlos Said
+ * Created By: Hygor
  */
 function find_all($table) {
     return find($table);

@@ -1,28 +1,20 @@
-<?php
-
-if($_SERVER['REQUEST_URI'] != '/SistemaOcorrencia/crud/index.php'){
-    require_once('../config.php');
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CRUD de Ocorrências com bootstrap</title>
+    <title>CRUD com Bootstrap</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         body {
             padding-top: 50px;
             padding-bottom: 20px;
         }
     </style>
-    <link rel="stylesheet" href="<?=BOOTSTRAP_PATH?>">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 </head>
 <body>
@@ -36,17 +28,17 @@ if($_SERVER['REQUEST_URI'] != '/SistemaOcorrencia/crud/index.php'){
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="<?=CAMINHO_ABSOLUTO?>index.php" class="navbar-brand">CRUD</a>
+            <a href="<?php echo BASEURL; ?>index.php" class="navbar-brand">CRUD</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="http://localhost/SistemaOcorrencia/crud/model/ocorrencias/index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Ocorrências <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://localhost/SistemaOcorrencia/crud/index.php">Gerenciar Ocorrências</a></li>
-                        <li><a href="http://localhost/SistemaOcorrencia/crud/index.php">Nova Ocorrência</a></li>
+                        <li><a href="<?php echo BASEURL; ?>customers">Gerenciar Ocorrências</a></li>
+                        <li><a href="<?php echo BASEURL; ?>customers/add.php">Nova Ocorrência</a></li>
                     </ul>
                 </li>
             </ul>
