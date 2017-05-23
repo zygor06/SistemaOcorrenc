@@ -1,8 +1,11 @@
 <?php
 
-    if($_SERVER['REQUEST_URI'] != '/SistemaOcorrencia/crud/index.php'){
-        require_once('../config.php');
-    }
+/* MUDAR CAMINHO DO LOCALHOST SE QUISER RODAR DE UM CAMINHO DIFERENTE!!! */
+
+
+/** caminho absoluto para a pasta do sistema **/
+if (!defined('CAMINHO_ABSOLUTO'))
+    define('CAMINHO_ABSOLUTO', 'http://localhost:80/SistemaOcorrencia/crud/');
 
 ?>
 
@@ -13,11 +16,9 @@
     <p>&copy;2017 - Hygor Christian e Carlos Said - UniCEUB</p>
 </footer>
 
-<script src="<?=JQUERY_PATH?>"></script>
-<script>window.jQuery || document.write('<script src="<?=JQUERY_PATH?>"><\/script>')</script>
+<script src="<?=CAMINHO_ABSOLUTO.'js/jquery.min.js'?>"></script>
+<script>window.jQuery || document.write('<script src="<?=CAMINHO_ABSOLUTO.'js/jquery.min.js'?>"><\/script>')</script>
 
-<script src="<?php echo BASEURL; ?>js/bootstrap.min.js"></script>
-
-<script src="<?php echo BASEURL; ?>js/main.js"></script>
+<script src="<?=CAMINHO_ABSOLUTO?>js/bootstrap.min.js"></script>
 </body>
 </html>

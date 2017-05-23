@@ -1,19 +1,26 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Hygor Dias <hygor_christian@hotmail.com>
+ * Date: 23/05/2017
+ * Time: 19:34
+ */
 
-require_once('model/functions.php');
-index();
+require_once('functions.php');
 
+listaOcorrenciaAutor();
 
+include(HEADER_TEMPLATE);
+?>
 
-include(HEADER_TEMPLATE); ?>
     <header>
         <div class="row">
             <div class="col-sm-6">
-                <h2>Ocorrências</h2>
+                <h2>Ocorrência por Autor</h2>
             </div>
             <div class="col-sm-6 text-right h2">
-                <a class="btn btn-primary" href="<?=CAMINHO_ABSOLUTO?>model/ocorrencias/add.php"><i class="fa fa-plus"></i> Nova Ocorrência</a>
-                <a class="btn btn-default" href=""><i class="fa fa-refresh"></i> Atualizar</a>
+                <a class="btn btn-primary" href="add.php"><i class="fa fa-plus"></i> Nova Ocorrência</a>
+                <a class="btn btn-default" href="index.php"><i class="fa fa-refresh"></i> Atualizar</a>
             </div>
         </div>
     </header>
@@ -31,8 +38,9 @@ include(HEADER_TEMPLATE); ?>
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Marca</th>
+            <th>Número da Ocorrência</th>
+            <th>Ano</th>
+            <th>Nome do Autor</th>
         </tr>
         </thead>
         <tbody>
@@ -41,9 +49,10 @@ include(HEADER_TEMPLATE); ?>
                 <tr>
                     <td><?php echo $ocorrencia[0]; ?></td>
                     <td><?php echo $ocorrencia[1]; ?></td>
+                    <td><?php echo $ocorrencia[3]; ?></td>
                     <td class="actions text-right">
-                        <a href="view.php?id=<?php echo $ocorrencia['ID']; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
-                        <a href="edit.php?id=<?php echo $ocorrencia['ID']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                        <a href="view.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+                        <a href="edit.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                         <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $ocorrencia['id']; ?>">
                             <i class="fa fa-trash"></i>
                         </a>
@@ -58,4 +67,8 @@ include(HEADER_TEMPLATE); ?>
         </tbody>
     </table>
 
-<?php include('inc/footer.php'); ?>
+<?php
+
+include(FOOTER_TEMPLATE);
+
+?>

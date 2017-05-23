@@ -41,16 +41,28 @@ if($_SERVER['REQUEST_URI'] != '/SistemaOcorrencia/crud/index.php'){
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="http://localhost/SistemaOcorrencia/crud/model/ocorrencias/index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Ocorrências <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://localhost/SistemaOcorrencia/crud/index.php">Gerenciar Ocorrências</a></li>
-                        <li><a href="http://localhost/SistemaOcorrencia/crud/index.php">Nova Ocorrência</a></li>
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>model/ocorrencias">Gerenciar Ocorrências</a></li>
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>model/ocorrencias/ocorrenciaVitima.php">Ocorrências por Vítima</a></li>
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>model/ocorrencias/ocorrenciaAutor.php">Ocorrências por Autor</a></li>
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>model/ocorrencias/add.php">Nova Ocorrência</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Pessoa Física <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>index.php">Gerenciar Pessoa Física</a></li>
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>index.php">Nova Pessoa Física</a></li>
                     </ul>
                 </li>
             </ul>
         </div><!--/.navbar-collapse -->
+
     </div>
 </nav>
 

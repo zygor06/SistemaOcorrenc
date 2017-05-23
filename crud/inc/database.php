@@ -25,6 +25,32 @@ function open_database() {
 }
 
 /**
+ * @return mysqli|null
+ * Created By: Carlos Said
+ */
+function executeSql($sql) {
+    $database = open_database();
+    $found = NULL;
+
+    try {
+        $result = $database->query($sql);
+
+        if ($result->num_rows > 0) {
+            $found = $result->fetch_all();
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = $e->getMessage();
+        $_SESSION['type'] = 'danger';
+    }
+
+    close_database($database);
+
+    return $found;
+}
+
+
+
+/**
  * @param $conn
  * Created By: Carlos Said
  */
