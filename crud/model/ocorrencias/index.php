@@ -2,7 +2,7 @@
 
 require_once('functions.php');
 
-listaOcorrencia();
+index("ocorrencia_policial");
 
 include(HEADER_TEMPLATE);
 ?>
@@ -10,7 +10,7 @@ include(HEADER_TEMPLATE);
 <header>
     <div class="row">
         <div class="col-sm-6">
-            <h2>Ocorrência por vítima</h2>
+            <h2>Ocorrências</h2>
         </div>
         <div class="col-sm-6 text-right h2">
             <a class="btn btn-primary" href="add.php"><i class="fa fa-plus"></i> Nova Ocorrência</a>
@@ -34,7 +34,8 @@ include(HEADER_TEMPLATE);
     <tr>
         <th>Número da Ocorrência</th>
         <th>Ano</th>
-        <th>Nome do Autor</th>
+        <th>Data Registro</th>
+        <th>Descricao</th>
     </tr>
     </thead>
     <tbody>
@@ -44,6 +45,7 @@ include(HEADER_TEMPLATE);
                 <td><?php echo $ocorrencia[0]; ?></td>
                 <td><?php echo $ocorrencia[1]; ?></td>
                 <td><?php echo $ocorrencia[3]; ?></td>
+                <td><?php echo $ocorrencia[8]; ?></td>
                 <td class="actions text-right">
                     <a href="view.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
                     <a href="edit.php?id=<?php echo $ocorrencia[0]; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>

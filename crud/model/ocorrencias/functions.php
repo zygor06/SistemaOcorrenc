@@ -26,37 +26,17 @@ function index($table){
 }
 
 /**
- * @param null $table -> Nome da tabela
+ * @param null $vire -> Nome da view
  *
  * Retorna todos os dados da tabela
  *
  * Created By: Hygor
  */
-function listaOcorrenciaCNPJ(){
+function loadView($view){
     global $ocorrencias;
-    $sql = 'SELECT oc.numero AS \'Ocorrência nº\', oc.ano AS \'Ano\', pj.nome_fantasia AS \'Nome Fantasia\', pj.razao_social AS \'Razão Social\' 
-	        FROM ocorrencia_policial oc
-	        JOIN envolve_cnpj epj ON oc.numero = epj.ocorrencia_policial_numero AND oc.ano = epj.ocorrencia_policial_ano
-	        JOIN pessoa_juridica pj ON epj.pessoa_juridica_cnpj = pj.cnpj;';
+    $sql = "SELECT * FROM $view;";
     $ocorrencias = executeSql($sql);
 }
-
-/**
- * @param null $table -> Nome da tabela
- *
- * Retorna todos os dados da tabela
- *
- * Created By: Hygor
- */
-function listaOcorrenciaAutor(){
-    global $ocorrencias;
-    $sql = 'SELECT oc.numero AS \'Ocorrência nº\', oc.ano AS \'Ano\', pf.nome AS \'Nome do Autor\' FROM pessoa_fisica pf 
-	        JOIN envolve_cpf e ON pf.cpf = e.pessoa_fisica_cpf AND pf.cpf_mae = e.pessoa_fisica_cpf_mae
-	        JOIN ocorrencia_policial oc ON oc.numero = e.ocorrencia_policial_numero	AND oc.ano = e.ocorrencia_policial_ano
-            WHERE e.tipo_envolvimento_id = "3";';
-    $ocorrencias = executeSql($sql);
-}
-
 
 /**
  * @param array $post_data -> nome do array passado via post

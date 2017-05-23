@@ -8,7 +8,7 @@
 
 require_once('functions.php');
 
-listaOcorrenciaVitima();
+loadView("vitima_pf");
 
 include(HEADER_TEMPLATE);
 ?>

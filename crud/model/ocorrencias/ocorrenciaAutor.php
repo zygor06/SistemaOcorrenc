@@ -8,7 +8,7 @@
 
 require_once('functions.php');
 
-listaOcorrenciaAutor();
+loadView("autores_pf");
 
 include(HEADER_TEMPLATE);
 ?>

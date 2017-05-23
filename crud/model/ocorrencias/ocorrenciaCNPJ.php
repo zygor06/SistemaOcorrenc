@@ -8,7 +8,7 @@
 
 require_once('functions.php');
 
-listaOcorrenciaCNPJ();
+loadView("vitimas_pj");
 
 include(HEADER_TEMPLATE);
 ?>
