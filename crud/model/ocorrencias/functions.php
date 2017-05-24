@@ -24,10 +24,12 @@ $unidadePolicialRegistro = null;
  *
  * Created By: Hygor
  */
-function index($table){
+function index($table, &$var = null){
     global $ocorrencias;
     $ocorrencias = find_all($table);
 }
+
+
 
 function indexUnidadesPoliciais($table){
     global $unidadesPoliciais;
@@ -52,7 +54,7 @@ function view($id = null) {
     global $ocorrencia;
     global $unidadePolicialApuracao;
     global $unidadePolicialRegistro;
-    $ocorrencia = find('ocorrencia_policial', $id, 'numero');
+    $ocorrencia = find('ocorrencia_policial', $id, 'Numero');
     $unidadePolicialApuracao = find('unidade_policial', $ocorrencia['Unidade_Policial_Apuracao_ID'], 'ID');
     $unidadePolicialRegistro = find('unidade_policial', $ocorrencia['Unidade_Policial_Registro_ID'], 'ID');
 }
@@ -110,7 +112,7 @@ function edit() {
 /**
  *  Atualiza um registro em uma tabela, por ID
  */
-function update($table = null, $id = 0, $data = null) {
+function update($table = null, $id = 0, $pk_name = null, $data = null) {
 
   $database = open_database();
 
@@ -125,7 +127,7 @@ function update($table = null, $id = 0, $data = null) {
 
   $sql  = "UPDATE " . $table;
   $sql .= " SET $items";
-  $sql .= " WHERE id=" . $id . ";";
+  $sql .= " WHERE $pk_name = $id ;";
 
   try {
     $database->query($sql);
