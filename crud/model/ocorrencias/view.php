@@ -12,7 +12,6 @@
 
 <?php include(HEADER_TEMPLATE); ?>
 
-    <?php var_dump($ocorrencia); ?>
     <h2>Ocorrência número <?php echo $ocorrencia['Numero']; ?></h2>
     <hr>
 
@@ -22,51 +21,32 @@
 
     <dl class="dl-horizontal">
         <dt>Numero da Ocorrência:</dt>
-        <dd><?php echo $customer['name']; ?></dd>
-
+        <dd><?php echo $ocorrencia['Numero']; ?></dd>
+        <hr>
         <dt>Ano:</dt>
-        <dd><?php echo $customer['cpf_cnpj']; ?></dd>
-
+        <dd><?php echo $ocorrencia['Ano']; ?></dd>
+        <hr>
         <dt>Data do Fato:</dt>
-        <dd><?php echo $customer['birthdate']; ?></dd>
+        <dd><?php echo $ocorrencia['Data_fato']; ?></dd>
+        <hr>
+        <dt>Data de Registro:</dt>
+        <dd><?php echo $ocorrencia['Data_registro']; ?></dd>
+        <hr>
+        <dt>Flagrante:</dt>
+        <dd><?php echo $ocorrencia['Flagrante'] == 0 ? 'Não' : 'Sim'; ?></dd>
+        <hr>
+        <dt>Tentativa:</dt>
+        <dd><?php echo $ocorrencia['Tentativa'] == 0 ? 'Não' : 'Sim'; ?></dd>
+        <hr>
+        <dt>Unidade Apuração:</dt>
+        <dd><?php echo isset($unidadePolicialApuracao['Nome']) ? $unidadePolicialApuracao['Nome'] : ''; ?></dd>
+        <hr>
+        <dt>Unidade Registro:</dt>
+        <dd><?php echo isset($unidadePolicialRegistro['Nome']) ? $unidadePolicialRegistro['Nome'] : ''; ?></dd>
+        <hr>
+        <dt>Descricao:</dt>
+        <dd><?php echo $ocorrencia['descricao']; ?></dd>
     </dl>
 
-    <dl class="dl-horizontal">
-        <dt>Endereço:</dt>
-        <dd><?php echo $customer['address']; ?></dd>
-
-        <dt>Bairro:</dt>
-        <dd><?php echo $customer['hood']; ?></dd>
-
-        <dt>CEP:</dt>
-        <dd><?php echo $customer['zip_code']; ?></dd>
-
-        <dt>Data de Cadastro:</dt>
-        <dd><?php echo $customer['created']; ?></dd>
-    </dl>
-
-    <dl class="dl-horizontal">
-        <dt>Cidade:</dt>
-        <dd><?php echo $customer['city']; ?></dd>
-
-        <dt>Telefone:</dt>
-        <dd><?php echo $customer['phone']; ?></dd>
-
-        <dt>Celular:</dt>
-        <dd><?php echo $customer['mobile']; ?></dd>
-
-        <dt>UF:</dt>
-        <dd><?php echo $customer['state']; ?></dd>
-
-        <dt>Inscrição Estadual:</dt>
-        <dd><?php echo $customer['ie']; ?></dd>
-    </dl>
-
-    <div id="actions" class="row">
-        <div class="col-md-12">
-            <a href="edit.php?id=<?php echo $customer['id']; ?>" class="btn btn-primary">Editar</a>
-            <a href="index.php" class="btn btn-default">Voltar</a>
-        </div>
-    </div>
 
 <?php include(FOOTER_TEMPLATE); ?>

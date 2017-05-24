@@ -11,7 +11,11 @@ require_once('../../config.php');
 require_once('../../inc/database.php'); //Importando a função save()
 
 $ocorrencias = null;
+$unidadesPoliciais = null;
+
 $ocorrencia = null;
+$unidadePolicialApuracao = null;
+$unidadePolicialRegistro = null;
 
 /**
  * @param null $table -> Nome da tabela
@@ -23,6 +27,11 @@ $ocorrencia = null;
 function index($table){
     global $ocorrencias;
     $ocorrencias = find_all($table);
+}
+
+function indexUnidadesPoliciais($table){
+    global $unidadesPoliciais;
+    $unidadesPoliciais = find_all($table);
 }
 
 /**
@@ -41,7 +50,11 @@ function loadView($view){
 
 function view($id = null) {
     global $ocorrencia;
+    global $unidadePolicialApuracao;
+    global $unidadePolicialRegistro;
     $ocorrencia = find('ocorrencia_policial', $id, 'numero');
+    $unidadePolicialApuracao = find('unidade_policial', $ocorrencia['Unidade_Policial_Apuracao_ID'], 'ID');
+    $unidadePolicialRegistro = find('unidade_policial', $ocorrencia['Unidade_Policial_Registro_ID'], 'ID');
 }
 
 /**
@@ -51,7 +64,7 @@ function view($id = null) {
  */
 function add() {
 
-  if (!empty($_POST['ocorrencia_policial'])) {
+  if (!empty($_POST['ocorrencia'])) {
     
     $today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 
@@ -79,9 +92,9 @@ function edit() {
     if (isset($_POST['ocorrencia'])) {
 
       $ocorrencia = $_POST['ocorrencia'];
-      $ocorrencia['modified'] = $now->format("Y-m-d H:i:s");
+      $ocorrencia['Data_registro'] = $now->format("Y-m-d H:i:s");
 
-      update('ocorrencias', $id, $ocorrencia);
+      update('ocorrencia_policial', $id, $ocorrencia);
       header('location: ../../index.php');
     } else {
 

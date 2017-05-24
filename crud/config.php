@@ -1,5 +1,4 @@
 <?php
-
 /** O nome do banco de dados*/
 define('DB_NAME', 'ocorrencias');
     /** Usuário do banco de dados MySQL */
