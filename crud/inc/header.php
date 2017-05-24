@@ -53,8 +53,7 @@ if($_SERVER['REQUEST_URI'] != '/SistemaOcorrencia/crud/index.php'){
                         Pessoa Física <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?=CAMINHO_ABSOLUTO?>index.php">Gerenciar Pessoa Física</a></li>
-                        <li><a href="<?=CAMINHO_ABSOLUTO?>index.php">Nova Pessoa Física</a></li>
+                        <li><a href="<?=CAMINHO_ABSOLUTO?>model/pessoaFisica/index.php">Ligação Pessoas com Veículos</a></li>
                     </ul>
                 </li>
             </ul>

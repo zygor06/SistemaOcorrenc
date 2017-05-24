@@ -10,12 +10,12 @@
 require_once('../../config.php');
 require_once('../../inc/database.php'); //Importando a função save()
 
-$ocorrencias = null;
-$unidadesPoliciais = null;
+$ocorrencias = NULL;
+$unidadesPoliciais = NULL;
 
-$ocorrencia = null;
-$unidadePolicialApuracao = null;
-$unidadePolicialRegistro = null;
+$ocorrencia = NULL;
+$unidadePolicialApuracao = NULL;
+$unidadePolicialRegistro = NULL;
 
 /**
  * @param null $table -> Nome da tabela
@@ -24,14 +24,13 @@ $unidadePolicialRegistro = null;
  *
  * Created By: Hygor
  */
-function index($table, &$var = null){
+function index($table, &$var = NULL) {
     global $ocorrencias;
     $ocorrencias = find_all($table);
 }
 
 
-
-function indexUnidadesPoliciais($table){
+function indexUnidadesPoliciais($table) {
     global $unidadesPoliciais;
     $unidadesPoliciais = find_all($table);
 }
@@ -43,14 +42,14 @@ function indexUnidadesPoliciais($table){
  *
  * Created By: Hygor
  */
-function loadView($view){
+function loadView($view) {
     global $ocorrencias;
     $sql = "SELECT * FROM $view;";
     $ocorrencias = executeSql($sql);
 }
 
 
-function view($id = null) {
+function view($id = NULL) {
     global $ocorrencia;
     global $unidadePolicialApuracao;
     global $unidadePolicialRegistro;
@@ -66,16 +65,16 @@ function view($id = null) {
  */
 function add() {
 
-  if (!empty($_POST['ocorrencia'])) {
-    
-    $today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+    if (!empty($_POST['ocorrencia'])) {
 
-    $ocorrencia = $_POST['ocorrencia'];
-    $ocorrencia['modified'] = $ocorrencia['created'] = $today->format("Y-m-d H:i:s");
-    
-    save('ocorrencias', $ocorrencia);
-    header('location: index.php');
-  }
+        $today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+
+        $ocorrencia = $_POST['ocorrencia'];
+        $ocorrencia['Data_registro'] = $today->format("Y-m-d H:i:s");
+
+        save('ocorrencia_policial', $ocorrencia);
+
+    }
 }
 
 /**
@@ -85,61 +84,109 @@ function add() {
 
 function edit() {
 
-  $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+    $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 
-  if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) {
 
-    $id = $_GET['id'];
+        $id = $_GET['id'];
 
-    if (isset($_POST['ocorrencia'])) {
+        if (isset($_POST['ocorrencia'])) {
 
-      $ocorrencia = $_POST['ocorrencia'];
-      $ocorrencia['Data_registro'] = $now->format("Y-m-d H:i:s");
+            $ocorrencia = $_POST['ocorrencia'];
+            $ocorrencia['Data_registro'] = $now->format("Y-m-d H:i:s");
 
-      update('ocorrencia_policial', $id, $ocorrencia);
-      header('location: ../../index.php');
+            update('ocorrencia_policial', $id, $ocorrencia);
+            header('location: ../../index.php');
+        } else {
+
+            global $ocorrencia;
+            $ocorrencia = find('ocorrencias', $id);
+        }
     } else {
-
-      global $ocorrencia;
-      $ocorrencia = find('ocorrencias', $id);
-    } 
-  } else {
-    header('location: index.php');
-  }
+        header('location: index.php');
+    }
 }
 
 
 /**
  *  Atualiza um registro em uma tabela, por ID
  */
-function update($table = null, $id = 0, $pk_name = null, $data = null) {
+function update($table = NULL, $id = 0, $pk_name = NULL, $data = NULL) {
 
-  $database = open_database();
+    var_dump($data);
 
-  $items = null;
+    $database = open_database();
 
-  foreach ($data as $key => $value) {
-    $items .= trim($key, "'") . "='$value',";
-  }
+    $items = NULL;
 
-  // remove a ultima virgula
-  $items = rtrim($items, ',');
+    foreach ($data as $key => $value) {
+        $items .= trim($key, "'") . "='$value',";
+    }
 
-  $sql  = "UPDATE " . $table;
-  $sql .= " SET $items";
-  $sql .= " WHERE $pk_name = $id ;";
+    // remove a ultima virgula
+    $items = rtrim($items, ',');
 
-  try {
-    $database->query($sql);
+    $sql = "UPDATE " . $table;
+    $sql .= " SET $items";
+    $sql .= " WHERE $pk_name = $id ;";
 
-    $_SESSION['message'] = 'Registro atualizado com sucesso.';
-    $_SESSION['type'] = 'success';
+    try {
+        $database->query($sql);
 
-  } catch (Exception $e) { 
+        $_SESSION['message'] = 'Registro atualizado com sucesso.';
+        $_SESSION['type'] = 'success';
+        header("Location: index.php");
 
-    $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
-    $_SESSION['type'] = 'danger';
-  } 
+    } catch (Exception $e) {
 
-  close_database($database);
+        $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+        $_SESSION['type'] = 'danger';
+    }
+
+    close_database($database);
+}
+
+/**
+ *  Atualiza um registro em uma tabela, por ID
+ */
+function insert($table = null, $data = null) {
+
+    var_dump($data);
+
+    $database = open_database();
+
+    $items = null;
+
+    foreach ($data as $key => $value) {
+        $items .= trim($key, "'") . "='$value',";
+    }
+
+    // remove a ultima virgula
+    $items = rtrim($items, ',');
+
+    $sql = "INSERT INTO $table " ;
+    $sql .= "SET  $items ;";
+
+    echo $sql;
+
+    try {
+        $database->query($sql);
+
+        $_SESSION['message'] = 'Registro atualizado com sucesso.';
+        $_SESSION['type'] = 'success';
+        header("Location: index.php");
+
+    } catch (Exception $e) {
+
+        $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+        $_SESSION['type'] = 'danger';
+    }
+
+    close_database($database);
+}
+
+function delete($id = null) {
+    global $ocorrencia;
+    $ocorrencia = remove('ocorrencia_policial', 'Numero', $id);  //remove( $table = null, $pk = null,  $id = null )
+    header('location: index.php');
 }

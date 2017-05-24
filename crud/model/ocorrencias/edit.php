@@ -4,11 +4,15 @@ require_once('functions.php');
 indexUnidadesPoliciais('unidade_policial');
 view($_GET['id']);
 
+if(isset($_POST['ocorrencia'])){
+    update('ocorrencia_policial', $_GET['id'], 'Numero', $_POST['ocorrencia']);
+}
+
 include(HEADER_TEMPLATE); ?>
 
 <h2>Atualizar Ocorrência</h2>
 
-<form action="edit.php?id=<?php echo $ocorrencia['id']; ?>" method="post">
+<form action="edit.php?id=<?php echo $ocorrencia['Numero']; ?>" method="post">
     <!-- area de campos do form -->
     <hr/>
     <div class="row">
@@ -62,13 +66,13 @@ include(HEADER_TEMPLATE); ?>
 
         <div class="form-group col-md-5">
             <label for="sel1">Unidade Policial de Apuração:</label>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="ocorrencia[Unidade_Policial_Apuracao_ID]">
                 <?php foreach ($unidadesPoliciais as $up) : ?>
                     <?php if($up[0] == $ocorrencia['Unidade_Policial_Apuracao_ID']): ?>
-                        <option value="ocorrencia['Unidade_Policial_Apuracao_ID']<?=$up[0]?>" selected><?php echo $up[1]; ?></option>
+                        <option value="<?=$up[0]?>" selected><?php echo $up[1]; ?></option>
                     <?php endif; ?>
                     <?php if($up[0] != $ocorrencia['Unidade_Policial_Apuracao_ID']): ?>
-                        <option value="ocorrencia['Unidade_Policial_Apuracao_ID']<?=$up[0]?>"><?php echo $up[1]; ?></option>
+                        <option value="<?=$up[0]?>"><?php echo $up[1]; ?></option>
                     <?php endif; ?>
 
                 <?php endforeach; ?>
@@ -77,16 +81,21 @@ include(HEADER_TEMPLATE); ?>
 
         <div class="form-group col-md-5">
             <label for="sel1">Unidade Policial de Registro:</label>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="ocorrencia['Unidade_Policial_Registro_ID]">
                 <?php foreach ($unidadesPoliciais as $up) : ?>
-                    <option value="ocorrencia['Unidade_Policial_Registro_ID']<?=$up[0]?>"><?php echo $up[1]; ?></option>
+                    <?php if($up[0] == $ocorrencia['Unidade_Policial_Registro_ID']): ?>
+                        <option value="<?=$up[0]?>" selected><?php echo $up[1]; ?></option>
+                    <?php endif; ?>
+                    <?php if($up[0] != $ocorrencia['Unidade_Policial_Registro_ID']): ?>
+                        <option value="<?=$up[0]?>"><?php echo $up[1]; ?></option>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </select>
         </div>
 
         <div class="form-group col-md-12">
             <label for="comment">Descrição:</label>
-            <textarea class="form-control" rows="5" id="comment"><?=$ocorrencia['descricao']?></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="ocorrencia['descricao']"><?=$ocorrencia['descricao']?></textarea>
         </div>
     </div>
     <br>

@@ -2,7 +2,9 @@
 
 require_once('functions.php');
 indexUnidadesPoliciais('unidade_policial');
-add();
+if(isset($_POST['ocorrencia'])){
+    insert('ocorrencia_policial', $_POST['ocorrencia']);
+}
 ?>
 
 <?php include(HEADER_TEMPLATE); ?>
@@ -25,7 +27,7 @@ add();
 
             <div class="form-group col-md-3 hidden">
                 <label for="campo2">Data Fato</label>
-                <input type="text" class="form-control" name="ocorrencia['Data_registro']" placeholder="YY-MM-DD hh:mm:ss">
+                <input type="text" class="form-control" name="ocorrencia['Data_registro']" placeholder="YY-MM-DD hh:mm:ss" value="2017-03-10 00:00:00">
             </div>
 
             <div class="form-group col-md-3">
@@ -63,25 +65,25 @@ add();
 
             <div class="form-group col-md-5">
                 <label for="sel1">Unidade Policial de Apuração:</label>
-                <select class="form-control" id="sel1">
+                <select class="form-control" id="sel1" name="ocorrencia['Unidade_Policial_Apuracao_ID']">
                     <?php foreach ($unidadesPoliciais as $up) : ?>
-                        <option value="ocorrencia['Unidade_Policial_Apuracao_ID']<?=$up[0]?>"><?php echo $up[1]; ?></option>
+                        <option value="<?=$up[0]?>"><?php echo $up[1]; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="form-group col-md-5">
                 <label for="sel1">Unidade Policial de Registro:</label>
-                <select class="form-control" id="sel1">
+                <select class="form-control" id="sel1" name="ocorrencia['Unidade_Policial_Registro_ID']">
                     <?php foreach ($unidadesPoliciais as $up) : ?>
-                        <option value="ocorrencia['Unidade_Policial_Registro_ID']<?=$up[0]?>"><?php echo $up[1]; ?></option>
+                        <option value="<?=$up[0]?>"><?php echo $up[1]; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="form-group col-md-12">
                 <label for="comment">Descrição:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="comment" name="ocorrencia['descricao']"></textarea>
             </div>
         </div>
         <br>

@@ -137,6 +137,9 @@ function save($table = null, $data = null) {
 
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';
     $_SESSION['type'] = 'success';
+
+    echo "inserido com sucesso!";
+    header('location: index.php');
   
   } catch (Exception $e) { 
   
@@ -155,4 +158,24 @@ function save($table = null, $data = null) {
  */
 function find_all($table) {
     return find($table);
+}
+
+
+function remove( $table = null, $pk = null,  $id = null ) {
+    $database = open_database();
+
+    try {
+        if ($id) {
+            $sql = "DELETE FROM  $table  WHERE $pk = " . $id;
+            $result = $database->query($sql);
+            if ($result = $database->query($sql)) {
+                $_SESSION['message'] = "Registro Removido com Sucesso.";
+                $_SESSION['type'] = 'success';
+            }
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = $e->GetMessage();
+        $_SESSION['type'] = 'danger';
+    }
+    close_database($database);
 }
